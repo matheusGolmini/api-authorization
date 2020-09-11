@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2018"],
+    "module": "commonjs",
+    "target": "ES2018",                 
+    "outDir": "./dist",                       
+    "strict": true,                          
+    "esModuleInterop": true,                  
+    "skipLibCheck": true,                   
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
+  }
+}
