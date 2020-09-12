@@ -26,5 +26,26 @@ async function createModuleUser(module_id: any, user_id: string) {
     } catch (error) {
         console.log(error)
     }
-    
 } 
+
+export async function getUser(req: Request, res: Response): Promise<Response> {
+    const instanceRepo = getRepository('user')
+    const result = await instanceRepo.find()
+    return res.status(200).json(result)
+}
+
+export async function getUserById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+    const instanceRepo = getRepository('user')
+    const result = await instanceRepo.find({ where: { id } })
+    return res.status(200).json(result)
+}
+
+export async function getUserByCompany(req: Request, res: Response): Promise<Response> {
+    const { company } = req.params
+    const instanceRepo = getRepository('user')
+    const result = await instanceRepo.find({ where: { company } })
+    return res.status(200).json(result)
+}
+
+
