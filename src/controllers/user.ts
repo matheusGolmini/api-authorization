@@ -94,3 +94,18 @@ export async function deleteModuleByUser(req: Request, res: Response): Promise<R
     }
 }
 
+export async function getModuleByUser(req: Request, res: Response): Promise<Response>{
+    const { userId } = req.params
+
+    const instanceRepoUserModule = getRepository('user_module')
+    try {
+        const modules: UserModule[] | unknown = await instanceRepoUserModule.find({where: { userId }})
+        if(!!modules) {
+            return res.status(200).json(modules)
+        }
+        return res.status(404).json({message: "The user has no modules"})
+    } catch (error) {
+        console.log(error)
+        return res.status(404).json({err: error})
+    }
+}
