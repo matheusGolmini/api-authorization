@@ -110,7 +110,7 @@ export async function getModuleByUser(req: Request, res: Response): Promise<Resp
     }
 }
 
-export async function getinfoCompany(req: Request, res: Response) {
+export async function userCommunicationCompany(req: Request, res: Response) {
    const { basicPath, path } = req.body
    return res.status(200).json({ message: `has permission to access the url: ${basicPath}${path}`})
 }
