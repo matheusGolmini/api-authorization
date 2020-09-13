@@ -4,6 +4,7 @@ import * as Controller from '../controllers'
 const router = Router()
 
 router.post('/user', Controller.createUser)
+router.get('/user/joab', Controller.getinfoCompany)
 router.get('/user/:id', Controller.getUserById)
 router.get('/user/company/:company', Controller.getUserByCompany)
 router.get('/user/module/:userId', Controller.getModuleByUser)

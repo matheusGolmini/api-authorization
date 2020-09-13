@@ -11,11 +11,11 @@ export default class User extends DefaultAttributes {
     @Column()
     password: string
 
-    @ManyToOne(type => Company, company => Company)
+    @ManyToOne(type => Company, company => Company, { eager: true })
     @JoinColumn({ name: 'company_id' })
     company: Company
 
-    @ManyToMany(type => Module, { cascade: true })
+    @ManyToMany(type => Module, { cascade: true, eager: true})
     @JoinTable({name: 'user_module'})
     module: Module[]
 }
