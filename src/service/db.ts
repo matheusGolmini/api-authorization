@@ -21,7 +21,6 @@ export async function createModuleUser(module_id: any, user_id: string) {
 } 
 
 interface Log {
-    isValue: boolean,
     module: string,
     user: string, 
 }

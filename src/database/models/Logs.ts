@@ -7,9 +7,6 @@ import User from "./User";
 @Entity('logs')
 export default class Logs extends DefaultAttributes {
 
-    @Column()
-    isValue: boolean
-
     @ManyToOne(type => User, company => User, { eager: true })
     @JoinColumn({ name: 'user_id' })
     user: User

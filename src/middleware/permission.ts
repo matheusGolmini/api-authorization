@@ -22,7 +22,6 @@ export function permissionUser (modules: any, path: string, userId: string  ): b
 
     if(module) {
         saveLogUser({
-            isValue: permission,
             module: module.id,
             user: userId, 
         })
