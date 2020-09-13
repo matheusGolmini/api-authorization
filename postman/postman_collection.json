@@ -156,6 +156,18 @@
 				},
 				{
 					"name": "CreateModule",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7ebe2c55-4d4f-4e5d-9b54-0dbe7da07751",
+								"exec": [
+									"pm.variables.set(\"path\", \"/module\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -163,11 +175,21 @@
 								"key": "jwt",
 								"value": "{{jwt}}",
 								"type": "text"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"path\": \"/financeiro\",\n    \"company\": \"36281c1e-ae16-4202-9e7c-b57fb86b52d3\"\n}",
+							"raw": "{\n    \"path\": \"/comercial\",\n    \"company\": \"0d68e7fa-b85a-402c-b66e-8364a762c646\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -283,7 +305,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"email\": \"user2@gmail.com\",\n        \"password\": \"user2\",\n        \"company\": \"36281c1e-ae16-4202-9e7c-b57fb86b52d3\"\n    },\n   \n\n    \"module\": [\n        {\n            \"moduleId\": \"3168e779-dd47-4ec4-aebc-5c7f07d913be\"\n        },\n        {\n            \"moduleId\": \"48f17c6c-90e2-4742-b0a0-dfd85c5736a6\"\n        }\n    ]\n}",
+							"raw": "{\n    \"user\": {\n        \"email\": \"user2@gmail.com\",\n        \"password\": \"user2\",\n        \"company\": \"0d68e7fa-b85a-402c-b66e-8364a762c646\"\n    },\n   \n\n    \"module\": [\n        {\n            \"moduleId\": \"c06b988f-6de7-4717-a097-6be405ff9e80\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -566,7 +588,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\n    \"modules\": [\n        {\n            \"moduleId\": \"2c76189c-4073-4916-a26b-c2fb95480339\",\n            \"userId\": \"5610b356-46b9-425d-8411-c8dc56014da3\"\n        }\n    ]\n}",
+							"raw": "{\n\n    \"modules\": [\n        {\n            \"moduleId\": \"ea2cb210-ae40-4370-9301-4cde03314e3a\",\n            \"userId\": \"e25b37a2-9b34-41c9-995e-f64438ed30f0\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -733,6 +755,11 @@
 								"key": "path",
 								"value": "{{path}}",
 								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{id}}",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -828,7 +855,8 @@
 							"var jsonData = JSON.parse(responseBody);",
 							"pm.environment.set(\"jwt\", jsonData.jwt);",
 							"pm.environment.set(\"basicPath\", jsonData.company.basicPath)",
-							"pm.environment.set(\"authorizedModules\", JSON.stringify(jsonData.module))"
+							"pm.environment.set(\"authorizedModules\", JSON.stringify(jsonData.module))",
+							"pm.environment.set(\"id\", jsonData.id)"
 						],
 						"type": "text/javascript"
 					}
@@ -840,12 +868,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "user1",
+							"value": "user2",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "user1@gmail.com",
+							"value": "user2@gmail.com",
 							"type": "string"
 						}
 					]
