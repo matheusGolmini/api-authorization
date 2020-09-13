@@ -1,6 +1,9 @@
 import { Request, Response } from 'express'
 import bcrypt from 'bcryptjs'
 import { getRepository } from 'typeorm'
+import { createModuleUser } from '../service/db'
+import User from '../database/models/User'
+import UserModule from '../database/models/UserModule'
 
 
 export async function createUser(req: Request, res: Response): Promise<Response> {
@@ -13,20 +16,6 @@ export async function createUser(req: Request, res: Response): Promise<Response>
     return res.status(200).json({...result, modules})
 }
 
-
-async function createModuleUser(module_id: any, user_id: string) {
-    try {
-        const instanceRepo = getRepository('user_module')
-        module_id.forEach((element: any) => {
-            element.userId = user_id
-        });
-        console.log(module_id)
-        const result = await instanceRepo.save(module_id)
-        return result
-    } catch (error) {
-        console.log(error)
-    }
-} 
 
 export async function getUser(req: Request, res: Response): Promise<Response> {
     const instanceRepo = getRepository('user')
@@ -72,4 +61,36 @@ export async function updateUser(req: Request, res: Response): Promise<Response>
     })
 }
 
+export async function addModuleByUser(req: Request, res: Response): Promise<Response> {
+    const { modules } = req.body
+
+    if(!modules.length) return res.status(404).json({ message: 'invalid params' })
+    const id = modules[0].userId
+    const instanceRepoUser = getRepository('user')
+    const resultUser: User | unknown = await instanceRepoUser.findOne({ where: { id } })
+
+    if (!resultUser) {
+        return res.status(404).json({
+            message: 'user not found'
+        })
+    }
+
+    const instanceRepoUserModule = getRepository('user_module')
+    const sav = await instanceRepoUserModule.save(modules)
+    return res.status(200).json(sav)
+}
+
+export async function deleteModuleByUser(req: Request, res: Response): Promise<Response> {
+    const { modules } = req.body
+
+    if(!modules.length) return res.status(404).json({ message: 'invalid params' })
+
+    const instanceRepoUserModule = getRepository('user_module')
+    try {
+        await instanceRepoUserModule.delete(modules)
+        return res.status(200).json({message: "deleted"})
+    } catch (error) {
+        return res.status(404).json({ message: 'it was not possible to delete' })
+    }
+}
 
