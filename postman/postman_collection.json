@@ -1,0 +1,878 @@
+{
+	"info": {
+		"_postman_id": "d39bca92-a51e-444a-80df-fba31e7ce61a",
+		"name": "Authenticated-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "CreateCompany",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "ZXVzb3VkZmjhuhunkjhXNlbnZvbHZlZG9ybWFuamE=",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"empresa1@gmail.com\",\n    \"password\": \"empresa1\",\n    \"basicPath\": \"http://localhost:3000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/company",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCompany",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/company",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCompanyById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/company/f968ac4b-87a3-4296-a1e3-847d75bfaf54",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company",
+								"f968ac4b-87a3-4296-a1e3-847d75bfaf54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCompany",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"empresa1.0@gmail.com\",\n    \"password\": \"empresa1.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/company/f968ac4b-87a3-4296-a1e3-847d75bfaf54",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company",
+								"f968ac4b-87a3-4296-a1e3-847d75bfaf54"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Module",
+			"item": [
+				{
+					"name": "GetModuleByCompany",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/module/f968ac4b-87a3-4296-a1e3-847d75bfaf54",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"module",
+								"f968ac4b-87a3-4296-a1e3-847d75bfaf54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateModule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"path\": \"/financeiro\",\n    \"company\": \"36281c1e-ae16-4202-9e7c-b57fb86b52d3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/module",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"module"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetModule",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/module",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"module"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateModule",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"path\": \"/logistica2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/module/2c76189c-4073-4916-a26b-c2fb95480339",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"module",
+								"2c76189c-4073-4916-a26b-c2fb95480339"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "CreateUser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e49b5a3c-79e8-4a5f-a337-037a7bd616bf",
+								"exec": [
+									"pm.variables.set(\"path\", \"/user\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"email\": \"user2@gmail.com\",\n        \"password\": \"user2\",\n        \"company\": \"36281c1e-ae16-4202-9e7c-b57fb86b52d3\"\n    },\n   \n\n    \"module\": [\n        {\n            \"moduleId\": \"3168e779-dd47-4ec4-aebc-5c7f07d913be\"\n        },\n        {\n            \"moduleId\": \"48f17c6c-90e2-4742-b0a0-dfd85c5736a6\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4042f13c-1737-4314-b71d-9d3a11c10b35",
+								"exec": [
+									"pm.variables.set(\"path\", \"/user\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserById",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "79199682-8855-4c78-80e3-7c93310837e1",
+								"exec": [
+									"pm.variables.set(\"path\", \"/user\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/df04deb2-5d06-40ff-87a4-3135c66aecae",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"df04deb2-5d06-40ff-87a4-3135c66aecae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserByCompany",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c81c095d-9b0c-47a1-86f9-b29ac5bbf5c7",
+								"exec": [
+									"pm.variables.set(\"path\", \"/user/company/:company\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/company/f968ac4b-87a3-4296-a1e3-847d75bfaf54",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"company",
+								"f968ac4b-87a3-4296-a1e3-847d75bfaf54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "855e5f73-1264-4911-b859-25bd1891b31e",
+								"exec": [
+									"pm.variables.set(\"path\", \"/user\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "jwt",
+								"type": "text",
+								"value": "{{jwt}}"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n    \"email\": \"user1.0@gmail.com\",\n    \"password\": \"user1.0\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/5610b356-46b9-425d-8411-c8dc56014da3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"5610b356-46b9-425d-8411-c8dc56014da3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddModuleUser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aadec810-2f61-423f-83e1-fc94a2ab267c",
+								"exec": [
+									"pm.variables.set(\"path\", \"/user/module\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"modules\": [\n        {\n            \"moduleId\": \"2c76189c-4073-4916-a26b-c2fb95480339\",\n            \"userId\": \"5610b356-46b9-425d-8411-c8dc56014da3\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/module",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"module"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteModuleUser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0165ad46-256f-4584-9272-ab5594b16ce4",
+								"exec": [
+									"pm.variables.set(\"path\", \"/user/module\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"modules\": [\n        {\n            \"moduleId\": \"2c76189c-4073-4916-a26b-c2fb95480339\",\n            \"userId\": \"5610b356-46b9-425d-8411-c8dc56014da3\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/module",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"module"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetModuleByUser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e2ef24e7-aec7-47a3-a294-6746709b9bf1",
+								"exec": [
+									"pm.variables.set(\"path\", \"/user/module\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/user/module/df04deb2-5d06-40ff-87a4-3135c66aecae",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"module",
+								"df04deb2-5d06-40ff-87a4-3135c66aecae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CommunicationCompany",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "16f58fb5-564f-4e65-b0c7-bdcfc4159b29",
+								"exec": [
+									"pm.variables.set(\"path\", \"/financeiro\")",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "152dd55a-330f-4733-b132-cbcde1ca10f7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "{{jwt}}",
+								"type": "text"
+							},
+							{
+								"key": "authorizedModules",
+								"value": "{{authorizedModules}}",
+								"type": "text"
+							},
+							{
+								"key": "path",
+								"value": "{{path}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"basicPath\": \"{{basicPath}}\",\n    \"path\": \"{{path}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/communication/company",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"communication",
+								"company"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CompanyLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2e7be41-528f-46e6-87ce-fee51a7b61d0",
+						"exec": [
+							"pm.environment.set(\"basicPath\", '')",
+							"pm.environment.set(\"authorizedModules\", '')",
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"jwt\", jsonData.jwt);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "empresa1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "empresa1@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"table\": \"company\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/auth",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2e7be41-528f-46e6-87ce-fee51a7b61d0",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"jwt\", jsonData.jwt);",
+							"pm.environment.set(\"basicPath\", jsonData.company.basicPath)",
+							"pm.environment.set(\"authorizedModules\", JSON.stringify(jsonData.module))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user1@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"table\": \"user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/auth",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
