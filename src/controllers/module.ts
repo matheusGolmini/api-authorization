@@ -20,3 +20,23 @@ export async function getModule(req: Request, res: Response): Promise<Response> 
     const result = await instanceRepo.find()
     return res.status(200).json(result)
 }
+
+export async function updateModule(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+    const moduleReq = req.body
+
+    const repo = getRepository('module')
+    const result: any = await repo.findOne({
+        id
+    })
+    if (!result) return res.status(404).json({ message: 'module not found'})
+    
+    moduleReq.id = id
+    const sav = await repo.save(moduleReq)
+
+    if (!!sav) return res.status(200).json(sav)
+
+    return res.status(404).json({
+        message: 'module not found'
+    })
+}

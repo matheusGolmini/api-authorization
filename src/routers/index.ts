@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { auth } from '../controllers/auth'
 import userRouter from './user'
-import moduleRouter from './user'
+import moduleRouter from './module'
 import companyRouter from './company'
 
 const router = Router()
