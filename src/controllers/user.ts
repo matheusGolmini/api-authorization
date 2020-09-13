@@ -48,4 +48,28 @@ export async function getUserByCompany(req: Request, res: Response): Promise<Res
     return res.status(200).json(result)
 }
 
+export async function updateUser(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+    const userReq = req.body
+
+    const repo = getRepository('user')
+    const result: any = await repo.findOne({
+        id
+    })
+    if (!result) {
+        return res.status(404).json({
+            message: 'user not found'
+        })
+    }
+    userReq.password = bcrypt.hashSync(userReq.password, 10)
+    userReq.id = id
+    const sav = await repo.save(userReq)
+    if (sav) {
+        return res.status(200).json(sav)
+    }
+    return res.status(404).json({
+        message: 'user not found'
+    })
+}
+
 
