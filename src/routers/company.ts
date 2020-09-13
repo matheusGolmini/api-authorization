@@ -6,7 +6,8 @@ import * as Controller from '../controllers'
 const router = Router()
 
 router.post('/company', checkComapany, Controller.createCompany)
-router.get('/company/:id', Controller.GetCompanyById)
+router.get('/company/:id', Controller.getCompanyById)
 router.get('/company', Controller.GetCompany)
+router.put('/company/:id', Controller.updateCompany)
 
 export default router
