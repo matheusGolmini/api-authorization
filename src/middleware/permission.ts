@@ -1,24 +1,34 @@
 import Module from "../database/models/Module"
 import { Request } from "express"
+import { saveLogUser } from "../service/db"
 
 export function permission (req: Request): boolean {
     if(!!req.headers.authorizedmodules) {
-        const n = permissionUser(JSON.parse(String(req.headers.authorizedmodules)), String(req.headers.path))
-        console.log(n)
-        return n
+        return permissionUser(JSON.parse(String(req.headers.authorizedmodules)), String(req.headers.path), String(req.headers.id))
     } 
     return true
 }
 
 
 
-export function permissionUser (modules: any, path: string  ): boolean {
+export function permissionUser (modules: any, path: string, userId: string  ): boolean {
     let permission: boolean = false
-    modules.forEach((value: Module) => { 
+    const [module] = modules.filter((value: Module) => { 
         if(value.path === path) {
-           permission = true 
+           permission = true
+           return value 
         }
     })
+
+    if(module) {
+        saveLogUser({
+            isValue: permission,
+            module: module.id,
+            user: userId, 
+        })
+    } 
     return permission
 }
+
+
 

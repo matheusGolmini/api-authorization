@@ -19,3 +19,18 @@ export async function createModuleUser(module_id: any, user_id: string) {
         console.log(error)
     }
 } 
+
+interface Log {
+    isValue: boolean,
+    module: string,
+    user: string, 
+}
+
+export function saveLogUser(log: Log): void {
+    try {
+        const instanceRepo = getRepository('logs')
+        instanceRepo.save(log)
+    } catch (error) {
+        console.log(error)
+    }
+}
