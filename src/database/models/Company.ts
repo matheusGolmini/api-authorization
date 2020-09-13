@@ -16,5 +16,8 @@ export default class Company extends DefaultAttributes {
 
     @OneToMany(type => Module, module => Module)
     module: Module[]
+
+    @Column()
+    basicPath: string
 }
 
