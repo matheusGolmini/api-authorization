@@ -1,25 +1,15 @@
-import DefaultAttributes from "./DefaultAttributes";
-import { Column, Entity, ManyToOne, JoinColumn, JoinTable, ManyToMany, OneToMany } from "typeorm";
-import Company from "./Company";
-import Module from "./Module";
-import Logs from "./Logs";
+import {Column, Entity, ObjectID, ObjectIdColumn} from "typeorm";
 
-@Entity('user')
-export default class User extends DefaultAttributes {
-    @Column()
-    email: string
+@Entity()
+export class User {
+
+    @ObjectIdColumn()
+    id: ObjectID;
 
     @Column()
-    password: string
+    email: string;
 
-    @ManyToOne(type => Company, company => Company, { eager: true })
-    @JoinColumn({ name: 'company_id' })
-    company: Company
+    @Column()
+    password: string;
 
-    @ManyToMany(type => Module, { cascade: true, eager: true})
-    @JoinTable({name: 'user_module'})
-    module: Module[]
-
-    @OneToMany(type => Logs, company => Logs)
-    logs: Logs
 }

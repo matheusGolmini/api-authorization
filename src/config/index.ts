@@ -10,11 +10,7 @@ function getFromEnv(name: string): string {
 export default function config() {
     return {
       db_postgres: {
-        host: getFromEnv('DB_HOST'),
-        port: getFromEnv('DB_PORT'),
-        username: getFromEnv('DB_USERNAME'),
-        database: getFromEnv('DB_DATABASE'),
-        password: getFromEnv('DB_PASS')
+        url: getFromEnv('URL_DB')
       },
       jwt_secret: getFromEnv('JWT_SECRET'),
       token_create_company: getFromEnv('TOKEN_CREATE_COMPANY')

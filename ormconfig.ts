@@ -3,12 +3,9 @@ import configEnv from './src/config'
 const configDB = configEnv().db_postgres
 
 module.exports = {
-  type: 'postgres',
-  host: configDB.host,
-  port: Number(configDB.port),
-  username: configDB.username,
-  password: configDB.password,
-  database: configDB.database,
+  type: 'mongodb',
+  url: configDB.url,
+  useUnifiedTopology: true,
   entities: [
     'src/database/models/**/*.ts'
   ],

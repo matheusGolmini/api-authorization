@@ -1,15 +1,16 @@
-version: '3'
-
+version: "3.3"
 services:
-  db:
-    image: postgres
-    restart: always
+  app:
+    build: .
+    command: sh -c "yarn && yarn start"
     environment:
-      POSTGRES_PASSWORD: ${DB_PASS}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_HOST: ${DB_HOST}
-    ports:
-      - ${DB_PORT}:5432
+      PROJECT_ENV: development
+      #DB
+      URL_DB: mongodb+srv://mongoteste:mongoteste@mongo.9m0qr.mongodb.net/Mongo?retryWrites=true&w=majority
+      #JWT
+      JWT_SECRET: GHuiuy158kj
     volumes:
-      - /var/lib/postgresql/data
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
