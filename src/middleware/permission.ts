@@ -1,33 +1,31 @@
-import Module from "../database/models/Module"
-import { Request } from "express"
-import { saveLogUser } from "../service/db"
+import { Roles } from '../enum/Roles'
 
-export function permission (req: Request): boolean {
-    if(!!req.headers.authorizedmodules) {
-        return permissionUser(JSON.parse(String(req.headers.authorizedmodules)), String(req.headers.path), String(req.headers.id))
+export function permission (user: any): boolean {
+    if(user.role !== Roles.ADMIN) {
+        return true
     } 
     return true
 }
 
 
 
-export function permissionUser (modules: any, path: string, userId: string  ): boolean {
-    let permission: boolean = false
-    const [module] = modules.filter((value: Module) => { 
-        if(value.path === path) {
-           permission = true
-           return value 
-        }
-    })
+// export function permissionUser (modules: any, path: string, userId: string  ): boolean {
+//     let permission: boolean = false
+//     const [module] = modules.filter((value: Module) => { 
+//         if(value.path === path) {
+//            permission = true
+//            return value 
+//         }
+//     })
 
-    if(module) {
-        saveLogUser({
-            module: module.id,
-            user: userId, 
-        })
-    } 
-    return permission
-}
+//     if(module) {
+//         saveLogUser({
+//             module: module.id,
+//             user: userId, 
+//         })
+//     } 
+//     return permission
+// }
 
 
 

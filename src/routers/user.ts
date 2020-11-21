@@ -11,7 +11,9 @@ router.post('/user', checkUser, Controller.createUser)
 // router.get('/user/module/:userId', Controller.getModuleByUser)
 // router.get('/user', Controller.getUser)
 // router.put('/user/:id', Controller.updateUser)
-// router.post('/user/module', Controller.addModuleByUser)
+router.post('/user/module', (req, res) => {
+    return res.status(200).send("ok")
+})
 // router.delete('/user/module', Controller.deleteModuleByUser)
 
 export default router
