@@ -7,12 +7,9 @@ export class Users {
     id: ObjectID;
 
     @Column()
-    email: string;
+    path: string;
 
     @Column()
-    password: string;
-
-    @Column()
-    role: string;
+    user_id: ObjectID;
 
 }

@@ -11,7 +11,7 @@ const app = express()
 const port = process.env.SERVER_PORT || 3000
 
 app.use(morgan('dev'))
-app.use(jwt)
+// app.use(jwt)
 app.use(bodyParser.json())
 app.use(routers)
 

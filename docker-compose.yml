@@ -9,6 +9,7 @@ services:
       URL_DB: mongodb+srv://mongoteste:mongoteste@mongo.9m0qr.mongodb.net/Mongo?retryWrites=true&w=majority
       #JWT
       JWT_SECRET: GHuiuy158kj
+      TOKEN_CREATE_USER: 'ZXVzb3VkZmjhuhunkjhXNlbnZvbHZlZG9ybWFuamE='
     volumes:
       - .:/app
       - /app/node_modules

@@ -13,6 +13,6 @@ export default function config() {
         url: getFromEnv('URL_DB')
       },
       jwt_secret: getFromEnv('JWT_SECRET'),
-      token_create_company: getFromEnv('TOKEN_CREATE_COMPANY')
+      token_create_user: getFromEnv('TOKEN_CREATE_USER')
     }
 }

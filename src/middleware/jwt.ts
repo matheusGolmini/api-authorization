@@ -13,7 +13,7 @@ const excludedPaths: CheckJwt[] = [
     method: '*'
   },
   {
-    path: '/company',
+    path: '/user',
     method: 'POST'
   }
 ]
@@ -33,6 +33,7 @@ const checkJwt = (req: Request, res: Response, next: NextFunction) => {
   if (!jwt) return res.status(401).json({ message: 'Informe um jwt' })
   try {
     const result = verifyJwt(String(req.headers.jwt))
+    console.log(result)
     if (!result) return res.status(401).json({ message: 'Invalid Token' })
     if(!permission(req)) return res.status(402).json({ message: 'Does not have permission' }) 
     next()

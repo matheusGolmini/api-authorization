@@ -17,3 +17,4 @@ module.exports = {
     entitiesDir: 'src/database/models'
   }
 }
+

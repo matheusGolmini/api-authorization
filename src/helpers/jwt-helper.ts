@@ -24,9 +24,10 @@ export const parseAuthorizationHeaders = (authorization: string) => {
     return { user, pwd }
 }
 
-export const generateJwt = (id: string) => {
+export const generateJwt = (id: string, role: string ) => {
     const payload = {
-        id,
+        user_id: id,
+        role,
         session_start: new Date()
     }
     return jwt.sign(payload, tokenPrivateKey, { expiresIn: '10h' })
