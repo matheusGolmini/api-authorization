@@ -8,13 +8,12 @@ import { Users } from '../database/models/User'
 
 export async function auth(req: Request, res: Response): Promise<Response> {
   const authorization = req.headers.authorization
-  const { table } = req.body
-
-  if (!!authorization && !!table) {
+  if (!!authorization) {
     const { user, pwd } = parseAuthorizationHeaders(authorization)
     const connection = await returnConnection();
     
     const people: any = await connection.mongoManager.findOne(Users, {where: {email: user}})
+    connection.close()
     if (people) {
       if (bcrypt.compareSync(pwd, people.password)) {
           people.jwt = generateJwt(people.id, people.role)
