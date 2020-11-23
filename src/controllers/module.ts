@@ -1,42 +1,55 @@
 import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
+import { returnConnection } from '../database/config';
+import { Module } from '../database/models/Modules'
 
 export async function createModule(req: Request, res: Response): Promise<Response> {
-    const modules = req.body
-    const instanceRepo = getRepository('module')
-    const result = await instanceRepo.save(modules)
-    return res.status(200).json(result)
-}
-
-export async function getModuleByCompany(req: Request, res: Response): Promise<Response> {
-    const { company } = req.params
-    const instanceRepo = getRepository('module')
-    const result = await instanceRepo.find({ where: { company } })
-    return res.status(200).json(result)
-}
-
-export async function getModule(req: Request, res: Response): Promise<Response> {
-    const instanceRepo = getRepository('module')
-    const result = await instanceRepo.find()
-    return res.status(200).json(result)
-}
-
-export async function updateModule(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params
-    const moduleReq = req.body
-
-    const repo = getRepository('module')
-    const result: any = await repo.findOne({
-        id
-    })
-    if (!result) return res.status(404).json({ message: 'module not found'})
+    const connection = await returnConnection();
+    try {
+        const { path,  user_id } = req.body
+        if(!path && !user_id) return res.status(404).json({message: "informe um path e o user_id"});
     
-    moduleReq.id = id
-    const sav = await repo.save(moduleReq)
+        const module = new Module;
+        module.path = path;
+        module.user_id = user_id;
 
-    if (!!sav) return res.status(200).json(sav)
+        const db_user: Module = await connection.mongoManager.save(module);
+        connection.close();
 
-    return res.status(404).json({
-        message: 'module not found'
-    })
+        return res.status(201).json(db_user);
+    } catch (error) {
+        console.log('createModule::error ', error)
+        connection.close()
+        return res.status(500).send(error)
+    }
+}
+
+export async function getModuleByUser(req: Request, res: Response): Promise<Response> {
+    const connection = await returnConnection();
+    try {
+        const { user_id } = req.query
+        const db_user: any = await connection.mongoManager.find(Module, { where: { user_id } });
+        connection.close();
+        return res.status(200).json(db_user)
+    } catch (error) {
+        console.log('getModuleByUser::error ', error);
+        connection.close();
+        return res.status(500).send(error)
+    }
+}
+
+export async function deleteModule(req: Request, res: Response): Promise<Response> {
+    const connection = await returnConnection()
+    try {
+        const { user_id, path } = req.body
+        if(!user_id && !path ) return res.status(404).json({message: "informe um path e o user_id"});
+        const db_user: any = await connection.mongoManager.findOne(Module, { where: { user_id, path  } });
+        await connection.mongoManager.delete(Module, db_user);
+        connection.close()
+        return res.status(200).json({message: "usuário deletado"})
+    } catch (error) {
+        console.log('deleteUser::error ', error)
+        connection.close()
+        return res.status(500).send(error)
+    }
 }
