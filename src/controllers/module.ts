@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
-import { getRepository } from 'typeorm'
-import { returnConnection } from '../database/config';
+import { returnConnection } from '../database/config'
 import { Module } from '../database/models/Modules'
 
 export async function createModule(req: Request, res: Response): Promise<Response> {

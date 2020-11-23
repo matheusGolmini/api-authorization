@@ -1,31 +1,28 @@
 import { Roles } from '../enum/Roles'
+import { returnConnection } from '../database/config';
+import { Module } from '../database/models/Modules'
 
-export function permission (user: any): boolean {
+export async function permission (user: any, path: string): Promise<boolean> {
+    console.log('aqui',path)
     if(user.role !== Roles.ADMIN) {
-        return true
+        return await permissionUser(user, path)
     } 
     return true
 }
 
-
-
-// export function permissionUser (modules: any, path: string, userId: string  ): boolean {
-//     let permission: boolean = false
-//     const [module] = modules.filter((value: Module) => { 
-//         if(value.path === path) {
-//            permission = true
-//            return value 
-//         }
-//     })
-
-//     if(module) {
-//         saveLogUser({
-//             module: module.id,
-//             user: userId, 
-//         })
-//     } 
-//     return permission
-// }
+async function permissionUser (user: any, path: string) : Promise<boolean> {
+    const connection = await returnConnection();
+    try {
+        const res = await connection.mongoManager.find(Module, { where: { user_id: user.user_id } });
+        connection.close();
+        const exist = res.filter((value: any) => value.path === path);
+        if(exist.length) return true
+        return false
+    } catch (error) {
+        connection.close();
+        return false
+    }
+}
 
 
 

@@ -18,7 +18,7 @@ const excludedPaths: CheckJwt[] = [
   }
 ]
 
-const checkJwt = (req: Request, res: Response, next: NextFunction) => {
+const checkJwt = async (req: Request, res: Response, next: NextFunction) => {
   const { url: path, method } = req
 
   const isExcluded = excludedPaths.filter((value: CheckJwt) => {
@@ -34,7 +34,8 @@ const checkJwt = (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = verifyJwt(String(req.headers.jwt))
     if (!result) return res.status(401).json({ message: 'Invalid Token' })
-    if(!permission(result)) return res.status(402).json({ message: 'Does not have permission' }) 
+    const permi = await permission(result, String(req.query.path))
+    if(!permi) return res.status(402).json({ message: 'Does not have permission' }) 
     next()
   } catch (error) {
     return res.status(401).json({ message: 'Invalid Token' })

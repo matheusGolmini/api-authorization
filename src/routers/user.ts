@@ -10,6 +10,9 @@ router.get('/users/role', Controller.getUsersByRole)
 router.patch('/user/password', Controller.updatePasswordUser)
 router.patch('/user/role', Controller.updateRoleUser)
 router.delete('/user', Controller.deleteUser)
+router.get('/test', (req, res) => {
+    res.status(200).send({message: "Tem acesso"})
+})
 
 
 export default router
